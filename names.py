@@ -11,11 +11,17 @@ def names(namesRequired):
     nameCount = 0
     for currentCol in range(1,numCol+1):
         for tableIndex in range(1, numRows+1):
+            if nameCount == namesRequired:
+                toBreak = True
+                break
             names[tableIndex-1,currentCol-1] = letters[currentLet]
+            nameCount += 1
             if tableIndex % divisor == 0:
                 currentLet += 1
                 if currentLet > len(letters)-1:
                     currentLet = 0
+        if toBreak == True:
+                break
 
         divisor = divisor * len(letters)
     return names
